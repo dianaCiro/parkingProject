@@ -3,7 +3,7 @@ package com.ceiba.domain;
 import java.util.Calendar;
 
 
-public class businessRules {
+public class BusinessRules {
 
 	private static final int CAR_HOUR_VALUE = 1000;
 	private static final int MOTORCYCLE_HOUR_VALUE = 500;
@@ -11,8 +11,10 @@ public class businessRules {
 	private static final int MOTORCYCLE_DAY_VALUE = 4000;
 	private static final int SURPLUS_MOTORCYCLE = 2000;
 	private static final int START_TIME_DAY = 9;
-	private static final int CAR_CAPACITY = 20;
-	private static final int MOTORCYCLE_CAPACITY = 10;
+	private static final String MOTORCYCLE = "motorcycle";
+	
+
+	public BusinessRules() {}
 
 	public boolean isLetterInitialA(String plate) {
 		char letter = plate.toLowerCase().charAt(0);
@@ -23,20 +25,17 @@ public class businessRules {
 		return (vehicle.getCylinder() > 500);
 	}
 
-	public String allowEntry(Vehicle vehicle, Calendar date) {
+	public boolean allowEntry(Vehicle vehicle, Calendar date) {
 
 		int day;
-		String authorize;
-
-		authorize = "Esta autorizado a ingresar";
 		day = date.get(Calendar.DAY_OF_WEEK);
 
 		if (isLetterInitialA(vehicle.getNumberPlate())) {
 			if (day == 1 || day == 2) {
-				authorize = "No esta autorizado para ingresar";
+				return false;
 			}
 		}
-		return authorize;
+		return true;
 	}
 
 	public int calculateTimeSpent(Calendar entryTime, Calendar departureTime) {
@@ -84,7 +83,7 @@ public class businessRules {
 			hours = totalHours;
 		}
 
-		if (vehicle.getVehicleType().equalsIgnoreCase("motorcycle")) {
+		if (vehicle.getVehicleType().equalsIgnoreCase(MOTORCYCLE)) {
 			hours = hours * MOTORCYCLE_HOUR_VALUE;
 			days = days * MOTORCYCLE_DAY_VALUE;
 			if (validateMotorcycleCylinder(vehicle)) {
@@ -100,5 +99,6 @@ public class businessRules {
 
 		return totalToPay;
 	}
-
+	
+	
 }

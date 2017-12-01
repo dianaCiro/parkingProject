@@ -3,27 +3,25 @@ package unitTest;
 import org.junit.Before;
 import org.junit.Test;
 import com.ceiba.domain.Vehicle;
-import com.ceiba.domain.businessRules;
+import com.ceiba.domain.BusinessRules;
 import testdatabuilder.VehicleTestDataBuilder;
 import java.util.Calendar;
 import org.junit.Assert;
 
 public class BusinessRulesUnitTest {
 	
-	private static final String AUTHORIZATION_MESSAGE = "No esta autorizado para ingresar";
-	
-	private businessRules businessRules;
+
+	private BusinessRules businessRules;
 	private Calendar entryTime;
 	private Calendar departureTime;
 	private Vehicle vehicle;
-	private String auxStr;
 	private int auxInt;
 	private boolean auxBool;
 	
 	@Before
 	public void setUp() {
 		
-		businessRules = new businessRules();
+		businessRules = new BusinessRules();
 		entryTime = Calendar.getInstance();
 		departureTime = Calendar.getInstance();
 	}
@@ -51,10 +49,10 @@ public class BusinessRulesUnitTest {
 		entryTime.set(Calendar.DAY_OF_WEEK, 1);
 		
 		//Act
-		auxStr = businessRules.allowEntry(vehicle, entryTime);
+		auxBool = businessRules.allowEntry(vehicle, entryTime);
 		
 		//Assert
-		Assert.assertTrue(auxStr.equalsIgnoreCase(AUTHORIZATION_MESSAGE));
+		Assert.assertTrue(auxBool);
 	}
 	
 	@Test

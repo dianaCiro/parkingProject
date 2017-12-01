@@ -7,7 +7,7 @@ public class VehicleTestDataBuilder {
 	private static final String NUMBER_PLATE = "AS1156";
 	private static final int CYLINDER = 500;
 	private static final String BRAND = "HUNDAI";
-	private static final String VEHICLE_TYPE = "Carro";
+	private static final String VEHICLE_TYPE = "car";
 	
 	private String numberPlate;
 	private int cylinder;
