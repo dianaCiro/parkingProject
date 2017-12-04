@@ -29,7 +29,7 @@ public class VehicleController {
 
     @RequestMapping(value = "/vehicle/{plate}", method = RequestMethod.GET)
     public VehicleEntity getVehicle(@PathVariable("plate") String plate) {
-		return vehicleService.getVehicleByPlate(plate);
+    	return vehicleService.getVehicleByPlate(plate);
 	}
     
     @RequestMapping(value = "/createVehicle", method = RequestMethod.POST)

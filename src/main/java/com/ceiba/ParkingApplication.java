@@ -32,8 +32,8 @@ public class ParkingApplication {
 	@Bean
 	public CommandLineRunner setupp(VehicleRepository vehicleRepository) {
 		return (args) -> {
-			vehicleRepository.save(vehicleBuilder.convertToEntity(new Vehicle("ASD117",600,"HONDA","moto")));
-			vehicleRepository.save(vehicleBuilder.convertToEntity(new Vehicle("ASD11777",600,"HONDA","carro")));
+			vehicleRepository.save(vehicleBuilder.convertToEntity(new Vehicle("ASD117",600,"HONDA","motorcycle")));
+			vehicleRepository.save(vehicleBuilder.convertToEntity(new Vehicle("ASD11777",600,"HONDA","car")));
 			logger.info("The sample data has been generated");
 		};
 	}
