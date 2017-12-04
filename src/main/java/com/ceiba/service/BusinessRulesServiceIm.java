@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ceiba.domain.Vehicle;
 import com.ceiba.domain.VehiclesInParking;
 import com.ceiba.builder.VehicleBuilder;
-import com.ceiba.domain.BusinessRules;
+import com.ceiba.domain.BusinessRulesDomain;
 import com.ceiba.entity.RegisterParkingEntity;
 import com.ceiba.entity.VehicleEntity;
 
@@ -21,7 +21,7 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 	
 	@Autowired
 	@Qualifier("businessRulesQua")
-	BusinessRules businessRules;
+	BusinessRulesDomain businessRules;
 	
 	@Autowired
 	@Qualifier("vehicleBuilder")

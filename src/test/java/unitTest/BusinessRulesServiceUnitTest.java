@@ -1,7 +1,6 @@
 package unitTest;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +8,6 @@ import org.mockito.Mockito;
 
 import com.ceiba.builder.VehicleBuilder;
 import com.ceiba.domain.Vehicle;
-import com.ceiba.entity.VehicleEntity;
 import com.ceiba.service.BusinessRulesService;
 import com.ceiba.service.VehicleService;
 

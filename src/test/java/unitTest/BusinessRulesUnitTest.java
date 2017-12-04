@@ -3,7 +3,7 @@ package unitTest;
 import org.junit.Before;
 import org.junit.Test;
 import com.ceiba.domain.Vehicle;
-import com.ceiba.domain.BusinessRules;
+import com.ceiba.domain.BusinessRulesDomain;
 import testdatabuilder.VehicleTestDataBuilder;
 import java.util.Calendar;
 import org.junit.Assert;
@@ -11,7 +11,7 @@ import org.junit.Assert;
 public class BusinessRulesUnitTest {
 	
 
-	private BusinessRules businessRules;
+	private BusinessRulesDomain businessRules;
 	private Calendar entryTime;
 	private Calendar departureTime;
 	private Vehicle vehicle;
@@ -21,7 +21,7 @@ public class BusinessRulesUnitTest {
 	@Before
 	public void setUp() {
 		
-		businessRules = new BusinessRules();
+		businessRules = new BusinessRulesDomain();
 		entryTime = Calendar.getInstance();
 		departureTime = Calendar.getInstance();
 	}
