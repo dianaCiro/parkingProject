@@ -23,6 +23,7 @@ public class BusinessRulesController {
 
 	private static final String DENIED_ENTRY = "Denied entry";
 	private static final String VEHICLE_IN_PARKING = "There is not register of exit of this vehicle";
+	private static final String VEHICLE_NOT_REGISTERED = "The vehicle is not in the parking ";
 	
 	@Autowired
 	@Qualifier("businesServiceQua")
@@ -56,11 +57,17 @@ public class BusinessRulesController {
 	
 	@RequestMapping(value = "/updateRegister", method = RequestMethod.POST)
 	public RestResponse updateVehicle(@RequestBody VehicleEntity vehicleEntity) {
+		String message;
+		
 		if(!validate(vehicleEntity)) {
 			return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), 
 							"The obligatory fields are not filled out");
 		}
-		businessService.registerDepartureVehicle(vehicleEntity);
+		
+		message = businessService.registerDepartureVehicle(vehicleEntity);
+		if(message.equalsIgnoreCase(VEHICLE_NOT_REGISTERED)) {
+			return new RestResponse(304, message);
+		}
 		return new RestResponse(HttpStatus.OK.value(), "Successfull operation");
 	}
 	

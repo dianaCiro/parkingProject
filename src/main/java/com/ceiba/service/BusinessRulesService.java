@@ -9,6 +9,6 @@ public interface BusinessRulesService {
 	int getTotalCarInParking();
 	int getTotalMotorcycleInParking();
 	String registerEntryVehicle(VehicleEntity vehicleEntity);
-	void registerDepartureVehicle(VehicleEntity vehicleEntity);
+	String registerDepartureVehicle(VehicleEntity vehicleEntity);
 	List<VehiclesInParking> getAllVehicles();
 }

@@ -31,6 +31,7 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 	private static final String MOTORCYCLE = "motorcycle";
 	private static final String AUTHORIZATION_MESSAGE = "Successfully registered vehicle";
 	private static final String DENIED_ENTRY = "Denied entry";
+	private static final String VEHICLE_NOT_REGISTERED = "The vehicle is not in the parking ";
 	private static final String CAPACITY_PARKING = "There is no space available for this vehicle, the parking lot is completely full";
 	private static final String VEHICLE_IN_PARKING = "There is not register of exit of this vehicle";
 	private static final int CAR_CAPACITY = 20;
@@ -101,8 +102,7 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 	}
 
 	@Override
-	public void registerDepartureVehicle(VehicleEntity vehicleEntity) {
-		
+	public String registerDepartureVehicle(VehicleEntity vehicleEntity) {
 		
 		
 		double totalToPay;
@@ -114,12 +114,17 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 		Vehicle vehicle = vehicleBuilder.convertToDomain(vehicleEntity);
 		
 		registerEntity = registerParkingService.getRegisterWithoutCancel(vehicleEntity.getNumberPlate());
+		
+		if(registerEntity==null) {
+			return VEHICLE_NOT_REGISTERED;
+		}
 		entryTime = registerEntity.getEntryTime();
 		totalToPay = businessRules.calculateTotalToPay(vehicle, entryTime, departureDate);
 		registerEntity.setDepartureTime(departureDate);
 		registerEntity.setPayment(totalToPay);
 		
 		registerParkingService.insert(registerEntity);
+		return AUTHORIZATION_MESSAGE;
 	}
 
 	@Override
