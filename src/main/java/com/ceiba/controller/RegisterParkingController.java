@@ -17,7 +17,7 @@ public class RegisterParkingController {
 	@Autowired
 	RegisterParkingService registerService;
 	 
-	@CrossOrigin(origins = "http://localhost:8886")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "/detailsRegisters", method = RequestMethod.GET)
 	    public List<RegisterParkingEntity> getAllParking() {
 			return registerService.getAll();

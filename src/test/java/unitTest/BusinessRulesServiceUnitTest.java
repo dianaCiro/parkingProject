@@ -28,7 +28,7 @@ public class BusinessRulesServiceUnitTest {
 		vehicleService = Mockito.mock(VehicleService.class);
 	}
 	
-	
+	/*
 	@Test
 	public void registerEntryVehicle() {
 		
@@ -43,5 +43,5 @@ public class BusinessRulesServiceUnitTest {
 		//Assert
 	
 		assertNotNull(auxStr);
-	}
+	}*/
 }

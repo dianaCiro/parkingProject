@@ -68,8 +68,8 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 	public String registerEntryVehicle(VehicleEntity vehicleEntity) {
 		
 		Calendar entryDate = Calendar.getInstance();
-		entryDate.set(Calendar.DAY_OF_WEEK,3);
-		entryDate.set(Calendar.HOUR_OF_DAY, 10);
+		//entryDate.set(Calendar.DAY_OF_WEEK,3);
+		//entryDate.set(Calendar.HOUR_OF_DAY, 10);
 		RegisterParkingEntity registerParkingE;
 		String vehicleType = vehicleEntity.getVehicleType();
 		
@@ -103,8 +103,8 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 		Calendar entryTime;
 		RegisterParkingEntity registerEntity;
 		Calendar departureDate = Calendar.getInstance();
-		departureDate.set(Calendar.DAY_OF_WEEK,3);
-		departureDate.set(Calendar.HOUR_OF_DAY, 20);
+		//departureDate.set(Calendar.DAY_OF_WEEK,3);
+		//departureDate.set(Calendar.HOUR_OF_DAY, 20);
 		Vehicle vehicle = vehicleBuilder.convertToDomain(vehicleEntity);
 		
 		registerEntity = registerParkingService.getRegisterWithoutCancel(vehicleEntity.getNumberPlate());

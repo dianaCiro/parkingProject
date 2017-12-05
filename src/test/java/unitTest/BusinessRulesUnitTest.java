@@ -52,7 +52,7 @@ public class BusinessRulesUnitTest {
 		auxBool = businessRules.allowEntry(vehicle, entryTime);
 		
 		//Assert
-		Assert.assertTrue(auxBool);
+		Assert.assertFalse(auxBool);
 	}
 	
 	@Test
