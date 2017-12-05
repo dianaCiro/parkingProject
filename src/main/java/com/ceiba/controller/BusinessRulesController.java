@@ -21,25 +21,39 @@ import com.ceiba.util.RestResponse;
 @RestController
 public class BusinessRulesController {
 
+	private static final String DENIED_ENTRY = "Denied entry";
+	private static final String VEHICLE_IN_PARKING = "There is not register of exit of this vehicle";
+	
 	@Autowired
 	@Qualifier("businesServiceQua")
 	BusinessRulesService businessService;
 
+	
 	@RequestMapping(value = "/registers", method = RequestMethod.GET)
 	public List<VehiclesInParking> getAllRegisters() {
 		return businessService.getAllVehicles();
 	}
 
+	
 	@RequestMapping(value = "/createRegister", method = RequestMethod.POST)
 	public RestResponse saveVehicle(@RequestBody VehicleEntity vehicleEntity) {
+		String message;
+		
 		if(!validate(vehicleEntity)) {
 			return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), 
 							"The obligatory fields are not filled out");
 		}
-		businessService.registerEntryVehicle(vehicleEntity);
+		message = businessService.registerEntryVehicle(vehicleEntity);
+		if(message.equalsIgnoreCase(DENIED_ENTRY)) {
+			return new RestResponse(301, message);
+		}else if (message.equalsIgnoreCase(VEHICLE_IN_PARKING)){
+				return new RestResponse(303, message);
+			}
+		
 		return new RestResponse(HttpStatus.OK.value(), "Successfull operation");
 	}
 
+	
 	@RequestMapping(value = "/updateRegister", method = RequestMethod.POST)
 	public RestResponse updateVehicle(@RequestBody VehicleEntity vehicleEntity) {
 		if(!validate(vehicleEntity)) {

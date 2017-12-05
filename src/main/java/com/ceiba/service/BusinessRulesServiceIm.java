@@ -30,8 +30,9 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 	private static final String CAR = "car";
 	private static final String MOTORCYCLE = "motorcycle";
 	private static final String AUTHORIZATION_MESSAGE = "Successfully registered vehicle";
-	private static final String UNAUTHORIZATION_MESSAGE = "The vehicle is not authorized to enter";
+	private static final String DENIED_ENTRY = "Denied entry";
 	private static final String CAPACITY_PARKING = "There is no space available for this vehicle, the parking lot is completely full";
+	private static final String VEHICLE_IN_PARKING = "There is not register of exit of this vehicle";
 	private static final int CAR_CAPACITY = 20;
 	private static final int MOTORCYCLE_CAPACITY = 10;
 
@@ -67,14 +68,16 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 	@Override
 	public String registerEntryVehicle(VehicleEntity vehicleEntity) {
 		
+		String numberPlate = vehicleEntity.getNumberPlate();
 		Calendar entryDate = Calendar.getInstance();
-		//entryDate.set(Calendar.DAY_OF_WEEK,3);
+		
+		entryDate.set(Calendar.DAY_OF_WEEK,1);
 		//entryDate.set(Calendar.HOUR_OF_DAY, 10);
 		RegisterParkingEntity registerParkingE;
 		String vehicleType = vehicleEntity.getVehicleType();
 		
 		if(!businessRules.allowEntry(vehicleBuilder.convertToDomain(vehicleEntity), entryDate)) {
-			return UNAUTHORIZATION_MESSAGE;
+			return DENIED_ENTRY;
 		}else if(vehicleType.equalsIgnoreCase(CAR)){
 			if(getTotalCarInParking() >= CAR_CAPACITY) {
 				return CAPACITY_PARKING;
@@ -83,6 +86,9 @@ public class BusinessRulesServiceIm implements BusinessRulesService{
 			if(getTotalMotorcycleInParking() >= MOTORCYCLE_CAPACITY) {
 				return CAPACITY_PARKING;
 			}
+		}
+		if(registerParkingService.getRegisterWithoutCancel(numberPlate)!= null) {
+			return VEHICLE_IN_PARKING;
 		}
 		
 		registerParkingE = new RegisterParkingEntity();

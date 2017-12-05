@@ -34,6 +34,10 @@ public class VehicleController {
     
     @RequestMapping(value = "/createVehicle", method = RequestMethod.POST)
     public RestResponse saveVehicle(@RequestBody VehicleEntity vehicleEntity) {
+    	
+    	if(vehicleService.getVehicleByPlate(vehicleEntity.getNumberPlate())!= null) {
+    		return new RestResponse(302, "The vehicle is already entered");
+    	}
     	if(!validate(vehicleEntity)) {
 			return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), 
 							"The obligatory fields are not filled out");
