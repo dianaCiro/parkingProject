@@ -38,7 +38,7 @@ public class BusinessRulesServiceIntegrationTest {
 		
 		//Arrange
 		vehicleBuilder = new VehicleBuilder();
-		Vehicle vehicle= new VehicleTestDataBuilder().withNumberPlate("ASDF117").build();
+		Vehicle vehicle= new VehicleTestDataBuilder().withNumberPlate("SDFFF117").build();
 		
 		//Act
 		vehicleService.insertVehicle(vehicleBuilder.convertToEntity(vehicle));
